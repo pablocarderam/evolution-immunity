@@ -1,4 +1,4 @@
-
+ 
 '''
 Cardenas, Torres, & Santos-Vega, 2022
 Coded by github.com/pablocarderam
@@ -103,9 +103,9 @@ model.newSetup( # Now, we'll define our new setup:
 model.newPopulation(
     'normal_pop','normal_setup', num_hosts=int( num_hosts * (1-chronic_frac) )
     )
-# model.newPopulation(
-#     'chronic_pop','normal_setup', num_hosts=int( num_hosts * chronic_frac )
-#     )
+model.newPopulation(
+    'chronic_pop','normal_setup', num_hosts=int( num_hosts * chronic_frac )
+    )
 # model.linkPopulationsHostHostContact('normal_pop','chronic_pop',5.75e-3)
 
 model.addPathogensToHosts(
@@ -118,31 +118,34 @@ model.addPathogensToHosts(
     # in high transmission
     )
 
+model.linkPopulationsHostHostContact('normal_pop','chronic_pop',2e-2)
+model.linkPopulationsHostHostContact('chronic_pop','normal_pop',2e-2)
+
 model.newIntervention( t_d, 'treatHosts', [ 'normal_pop', 1, [re_seq] ] )
     # add drug, kills everything except resistant mutants
 
-# model.newIntervention( t_d, 'treatHosts', [ 'chronic_pop', 1, [re_seq] ] )
-#     # add drug, kills everything except resistant mutants
+model.newIntervention( t_d, 'treatHosts', [ 'chronic_pop', 1, [re_seq] ] )
+    # add drug, kills everything except resistant mutants
 
 t_f = t_d+5000 # final timepoint
 model.run(0,t_f,time_sampling=999, host_sampling=0, vector_sampling=0)
 data = model.saveToDataFrame(
-    'chronic_infection_example.csv'
+    'tests/intervential_all_pop/chronic_infection_example.csv'
     )
 
 # Plot all genomes separately:
 graph_compartments = model.compartmentPlot(
-    'chronic_infection_example_compartments.png', data
+    'tests/intervential_all_pop/chronic_infection_example_compartments.png', data
     )
 
 graph_composition = model.compositionPlot(
-    'chronic_infection_example_composition_ind.png', data,
+    'tests/intervential_all_pop/chronic_infection_example_composition_ind.png', data,
     num_top_sequences=6,
     count_individuals_based_on_model=model
     )
 
 graph_clustermap = model.clustermap(
-    'chronic_infection_example_clustermap.png', data,
+    'tests/intervential_all_pop/chronic_infection_example_clustermap.png', data,
     save_data_to_file='chronic_infection_example_pairwise_distances.csv',
     num_top_sequences=15,
     )
@@ -161,13 +164,13 @@ comp_dat = compositionDf(
     )
 
 graph_composition = model.compositionPlot(
-    'chronic_infection_example_composition.png', data,
+    'tests/intervential_all_pop/chronic_infection_example_composition.png', data,
     composition_dataframe=comp_dat,
     track_specific_sequences=['8 A, 0 B','7 A, 1 B','6 A, 2 B','5 A, 3 B','4 A, 4 B','3 A, 5 B','2 A, 6 B','1 A, 7 B','0 A, 8 B'],
     palette=CB_PALETTE_mod
     )
 
 graph_pop = model.populationsPlot( # Plot infected hosts per population over time.
-    'chronic_infection_example_populations.png', data,
+    'tests/intervential_all_pop/chronic_infection_example_populations.png', data,
     y_label='Infected hosts' # change y label
     )
