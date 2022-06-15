@@ -14,7 +14,7 @@ CB_PALETTE_mod = ["#E69F00", "#56B4E9", "#009E73", "#F0E442", "#0a2200",
 
 
 npop = 5 # number of populations
-completely_connected = True
+completely_connected = False
 do_intervention = True
 
 print('Creating model...')
@@ -45,8 +45,8 @@ if do_intervention is True:
 if npop == 5:
     n_populations = ['A', 'B', 'C', 'D', 'E']
     n_hosts = [100, 100, 100, 100, 100]
-    if do_intervention is True:
-        n_hosts = [50, 50, 300, 50, 50]
+    # if do_intervention is True:
+    #     n_hosts = [50, 50, 300, 50, 50]
     pops_dist = dict(zip(n_populations,n_hosts)) 
     infected_pops = ['A', 'B', 'C', 'D', 'E']
 elif npop == 10:
@@ -186,7 +186,7 @@ model.run(0,t_f,time_sampling=100, host_sampling=0, vector_sampling=0)
 saveas = 1 if completely_connected is True else 0
 savename = {1 : 'complete', 0 : 'partial'}
 interfolder = 1 if do_intervention is True else 0
-intername = {1 : '_intervention', 0 : ''}
+intername = {1 : '_intervention_samepopsn', 0 : ''}
 data = model.saveToDataFrame(
     'tests/5pops_sims_immunity_loss{}/{}/metapopulations_migration_5pops.csv'.format(intername[interfolder],savename[saveas]))
 

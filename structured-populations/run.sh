@@ -1,0 +1,2 @@
+python3 /Users/samueltorres/Documents/Projects/evolution-immunity/structured-populations/metapopulations_test_5pops_immunity_loss.py
+python3 /Users/samueltorres/Documents/Projects/evolution-immunity/structured-populations/metapopulations_test_5pops_immunity_loss_run1.py

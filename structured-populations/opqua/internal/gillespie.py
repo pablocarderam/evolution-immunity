@@ -663,14 +663,14 @@ class Gillespie(object):
                                 # if random number is under cumulative rate
 
                                 # print every n events
-                                print_counter += 1
-                                if print_counter == print_every_n_events:
-                                    print_counter = 0
-                                    print(
-                                        'Simulating time: '
-                                        + str(self.model.t_var) + ', event: '
-                                        + self.EVENT_IDS[e]
-                                        )
+                                # print_counter += 1
+                                # if print_counter == print_every_n_events:
+                                #     print_counter = 0
+                                #     print(
+                                #         'Simulating time: '
+                                #         + str(self.model.t_var) + ', event: '
+                                #         + self.EVENT_IDS[e]
+                                #         )
 
                                 changed = self.doAction(
                                     e, self.model.populations[
