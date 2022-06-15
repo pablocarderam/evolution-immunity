@@ -70,7 +70,7 @@ model.newSetup( # Now, we'll define our new setup:
     contact_rate_host_host=0.02, #5.75e-3,
     recovery_rate_host=5e-3,
     mutate_in_host=2e-2,
-    recombine_in_host=0,
+    recombine_in_host=0, 
     immunity_acquisition_rate_host=1e-2,
         # rate at which immunity is acquired within infected individuals
     immunity_loss_rate_host=0,
