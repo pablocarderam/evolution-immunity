@@ -234,36 +234,36 @@ for i, pop in enumerate(n_populations):
     )
 
 
-# Gropup genomes by number of B alleles:
-for genome in model.global_trackers['genomes_seen']:
-    data['Immunity'] = data['Immunity'].str.replace(
-        genome,
-        str( len(genome)-genome.count('B') ) + ' A, ' + str(genome.count('B')) + ' B'
-        )
+# # Gropup genomes by number of B alleles:
+# for genome in model.global_trackers['genomes_seen']:
+#     data['Immunity'] = data['Immunity'].str.replace(
+#         genome,
+#         str( len(genome)-genome.count('B') ) + ' A, ' + str(genome.count('B')) + ' B'
+#         )
 
-# Plot genomes grouped by number of B alleles:
-comp_dat = compositionDf(
-    data, track_specific_sequences=['8 A, 0 B','7 A, 1 B','6 A, 2 B','5 A, 3 B','4 A, 4 B','3 A, 5 B','2 A, 6 B','1 A, 7 B','0 A, 8 B'],
-    num_top_sequences=-1,
-    )
+# # Plot genomes grouped by number of B alleles:
+# comp_dat = compositionDf(
+#     data, track_specific_sequences=['8 A, 0 B','7 A, 1 B','6 A, 2 B','5 A, 3 B','4 A, 4 B','3 A, 5 B','2 A, 6 B','1 A, 7 B','0 A, 8 B'],
+#     num_top_sequences=-1,
+#     )
 
-graph_composition = model.compositionPlot(
-    'tests/5pops_sims_immunity_loss{}/{}/immunity_comp_metapopulations_migration_5pops.png'.format(intername[interfolder],savename[saveas]), 
-    data,
-    type_of_composition='Immunity', y_label='Genomes in immune memory',
-    track_specific_sequences=['8 A, 0 B','7 A, 1 B','6 A, 2 B','5 A, 3 B','4 A, 4 B','3 A, 5 B','2 A, 6 B','1 A, 7 B','0 A, 8 B'],
-    palette=CB_PALETTE_mod,
-    stacked=False
-    )
+# graph_composition = model.compositionPlot(
+#     'tests/5pops_sims_immunity_loss{}/{}/immunity_comp_metapopulations_migration_5pops.png'.format(intername[interfolder],savename[saveas]), 
+#     data,
+#     type_of_composition='Immunity', y_label='Genomes in immune memory',
+#     track_specific_sequences=['8 A, 0 B','7 A, 1 B','6 A, 2 B','5 A, 3 B','4 A, 4 B','3 A, 5 B','2 A, 6 B','1 A, 7 B','0 A, 8 B'],
+#     palette=CB_PALETTE_mod,
+#     stacked=False
+#     )
 
-# Composition plot for each population:
-for i, pop in enumerate(n_populations):
-    graph_composition = model.compositionPlot(
-    'tests/5pops_sims_immunity_loss{}/{}/individual_pop/immunity_comp_metapopulations_migration_pop{}.png'.format(intername[interfolder],savename[saveas], pop), 
-    data,
-    populations=['pop' + pop],
-    type_of_composition='Immunity', y_label='Genomes in immune memory',
-    track_specific_sequences=['8 A, 0 B','7 A, 1 B','6 A, 2 B','5 A, 3 B','4 A, 4 B','3 A, 5 B','2 A, 6 B','1 A, 7 B','0 A, 8 B'],
-    palette=CB_PALETTE_mod,
-    stacked=False
-    )
+# # Composition plot for each population:
+# for i, pop in enumerate(n_populations):
+#     graph_composition = model.compositionPlot(
+#     'tests/5pops_sims_immunity_loss{}/{}/individual_pop/immunity_comp_metapopulations_migration_pop{}.png'.format(intername[interfolder],savename[saveas], pop), 
+#     data,
+#     populations=['pop' + pop],
+#     type_of_composition='Immunity', y_label='Genomes in immune memory',
+#     track_specific_sequences=['8 A, 0 B','7 A, 1 B','6 A, 2 B','5 A, 3 B','4 A, 4 B','3 A, 5 B','2 A, 6 B','1 A, 7 B','0 A, 8 B'],
+#     palette=CB_PALETTE_mod,
+#     stacked=False
+#     )
